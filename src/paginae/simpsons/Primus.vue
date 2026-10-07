@@ -1,24 +1,36 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
-import { Home, House } from '@lucide/vue';
+// import { Home, House } from '@lucide/vue';
 </script>
 <template> 
+
+<h1 class="text-6xl text-red-500 m-8 bg-amber-300 w-fit px-12 py-5 rounded-2xl shadow-xl hover:text-purple-500 hover:bg-green-500">
+  Simpons Page
+
+</h1>
+<!-- 
         <div class="extra-nav"> 
          <RouterLink to="/">
         <House class="icon-home"/>
         </RouterLink>  
-        </div>
+       </div> 
 
 
   <header class="Titulo">
         <div id="titulus-Simpsons" class="titulus-img"> 
         <h1> Simpsons</h1>
         <p> Multiplicate por 0</p>
-                </div>
-       </header>  
+        </div>
+       </header>   -->
 
 
 </template>
+
+
+
+
+
+
 <style scoped>
         .icon-home{
     width: 3rem;
@@ -51,10 +63,5 @@ import { Home, House } from '@lucide/vue';
     left: 0;
   }
 }
-       titulus-img {
-  background-size: 100% 100%;
-  background-position: center center;
-  background-image: url("../imageines/Simspons/familias.jpg");
-  min-height: 100vh;
-}
+
 </style>
