@@ -13,7 +13,6 @@ body {
     src: url("./assets/fonts/batmfo__.ttf");
   }
 
-
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
