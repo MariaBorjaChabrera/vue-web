@@ -20,7 +20,7 @@ import { Button } from '@/components/ui/button'
    Aprendiendo a crear aplicaciones web
    </p>
    
-        <div class="relative z-50 flex flex-wrap justify-center gap-4 py-4">
+        <div class="text-md bg-domus-cyan z-10 w-fit rounded-2xl px-2 py-2">
         
          <Button variant="domus" class="mr-2">      
           <RouterLink to="/indecision">Si o no
@@ -29,7 +29,7 @@ import { Button } from '@/components/ui/button'
          
 
          <Button variant="domus"class="mr-2"> 
-           <RouterLink to="/batman" class="text-white bg-transparent hover:opacity-80 active:opacity-60 transition-opacity px-3 py-2 font-medium">
+           <RouterLink to="/batman">Batman 
           </RouterLink>     
         </Button>
 
