@@ -1,106 +1,47 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router';
-import { Home, Menu } from '@lucide/vue';
-import  {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  navigationMenuTriggerStyle,
 
-} 
-from '@/components/ui/navigation-menu'
 import CarrusImaginum from '@/components/CarrusImaginum.vue';
-import { scrollToSection } from '@/utils/scrollToSection';
-import { onMounted,ref } from 'vue';
-import { Toggle } from '@/components/ui/toggle'
+import NavigatiorPrimarius from '@/components/NavigatorPrimarius.vue';
 import { useMouseMotio } from '@/composables/useMouseMotio';
+import { scrollToSection } from '@/utils/scrollToSection';
 
-  const photos = ["justice", "arkham", "superman", "varios", "villana", "villano", "grupo", "robin", "anne", "joker", "resplandor", "cat", "gafas", "league", "fondoVerde"];
+const photos = ["justice", "arkham", "superman", "varios", "villana", "villano", "grupo", "robin", "anne", "joker", "resplandor", "cat", "gafas", "league", "fondoVerde"];
 
-  const { mousePositione, cumMouseMove, cumMouseLeave } = useMouseMotio()
+const { mousePositione, cumMouseMove, cumMouseLeave } = useMouseMotio()
 
-
-const videreMenu = ref<boolean>(false)
-
-const handleResize = () => {
-  if  (window.innerWidth < 640) {
-    videreMenu.value = false;
-  } else {
-    videreMenu.value = true;
-  }
-}
-
-onMounted(() => {
-  handleResize();
-  window.addEventListener('resize', handleResize);
-})
-
-onMounted(() => {
-  window.removeEventListener('resize', handleResize);
-})
-
+const menuItems = [
+  {
+    label: 'Portada',
+    href:'#',
+    onClick: () => scrollToSection('#')
+  },
+  {
+    label:'Vehículos',
+    href: '#vehiculis',
+    onClick: () => scrollToSection ('#vehiculis')
+  },
+  {
+    label: `Imagenes`,
+    href: `#videre`,
+    onClick: () => {
+      scrollToSection('#videre');
+    },
+  },
+  {
+    label: `Contacto`,
+    href: `#contactus`,
+    onClick: () => {
+      scrollToSection('#contactus');
+    },
+  },
+]
 
 
 </script>
 
 <template>
   <div class="Batman">
-      
-     <Toggle
-        class="fixed top-2 right-4 z-50 bg-slate-500 sm:hidden"
-        @click="videreMenu = !videreMenu"
-        >
-       <Menu />
-     </Toggle>
-
-    <nav v-if="videreMenu" class="extra-nav flex flex-col sm:flex-row justify-between px-3">
-      <RouterLink to="/">
-        <Home class="icon-home" />
-      </RouterLink>
-
-        <NavigationMenu>
-          <NavigationMenuList class="flex flex-col sm:flex-row">
-            <NavigationMenuItem>
-              <a href="#"  @click.prevent="scrollToSection('#')">
-              <NavigationMenuLink :class="[navigationMenuTriggerStyle(), 'text-md hover:bg-brand-purple hover:text-white transition-colors']">
-                Portada
-              </NavigationMenuLink>
-              </a>
-            </NavigationMenuItem>
- 
-            <NavigationMenuItem>
-              <a href="#vehiculis" @click.prevent="scrollToSection('#vehiculis')">
-                <NavigationMenuLink :class="[navigationMenuTriggerStyle(), 'text-md hover:bg-brand-purple hover:text-white transition-colors']">
-                  Vehiculos
-                </NavigationMenuLink>
-              </a>
-            </NavigationMenuItem>
- 
-            <NavigationMenuItem>
-              <a href="#imagines" @click.prevent="scrollToSection('#imagines')">
-                <NavigationMenuLink :class="[navigationMenuTriggerStyle(), 'text-md hover:bg-brand-purple hover:text-white transition-colors']">
-                Imágenes
-               </NavigationMenuLink>
-              </a>
-            </NavigationMenuItem>
- 
-            <NavigationMenuItem>
-            <a href="#contacto" @click.prevent="scrollToSection('#contacto')">
-              <NavigationMenuLink href="#contacto" :class="[navigationMenuTriggerStyle(), 'text-md hover:bg-brand-purple hover:text-white transition-colors']">
-                Contacto
-              </NavigationMenuLink>
-              </a>
-            </NavigationMenuItem>
- 
-          </NavigationMenuList>
-        </NavigationMenu>
-    </nav>
-  
-    
-  
-      
- 
+<NavigatiorPrimarius :items="menuItems" homeRoute="/" />
 
   <header class="titulus">
     <div
@@ -330,63 +271,9 @@ onMounted(() => {
 
 }
 
-.icon-home{
-
-    width: 3rem;
-
-    height: 3rem;
-
-    color: rgb(213, 91, 112);
-  
-}
 
 
 
-.icon-home:hover{
-
-    color: white;
-
-    background-color: rgb(205, 87, 87);
-
-}
-
-
-
-.extra-nav {
-
-  background-color: rgb(251, 231, 8);
-
-  opacity: 0.7;
-
-  box-shadow: rgba(0, 0, 0, 0.7);
-
-  position: fixed;
-
-  top: 0;
-
-  width: 11rem;
-
-  border-radius: 0 0 1rem 0;
-
-  z-index: 1;
-
-}
-
-@media (min-width: 340px){
-
-  .extra-nav {
-
-    width: 100%;
-
-    border-radius: 0;
-
-    opacity: 1;
-
-    left: 0;
-
-  }
-
-}
 
 .titulus-img {
 
