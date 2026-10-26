@@ -1,66 +1,42 @@
 <script setup lang="ts">
-// import { Home, House } from '@lucide/vue';
+import LogoSimpsons from '@/components/LogoSimpsons.vue';
+import Button from '@/components/ui/button/Button.vue';
+
 </script>
+
 <template> 
+  <div class="bg-simpsons-yellow min-h-screen text-center p-4 flex flex-col items-center justify-center">
+      <LogoSimpsons  estilus="w-[24rem] sm:w-[35rem]"/>  
+      
 
-<h1 class="text-6xl text-red-500 m-8 bg-amber-300 w-fit px-12 py-5 rounded-2xl shadow-xl hover:text-purple-500 hover:bg-green-500">
-  Simpons Page
+    <h1 class="text-xl my-1 font-medium">
+        Discover some of the most amazing Quotes from The Simpsons
+    </h1>
+      <div>
+        <strong>This is an unofficial app (even though it looks so cool!)</strong>
+      </div>
+          <div className="mt-8 flex gap-5">
+            <Button variant="terriarius" size="elongatis">
+                  <RouterLink to="/">Exit</RouterLink>
+            </Button>
+              <Button variant="terriarius" size="elongatis">
+                  <RouterLink to="">Enter</RouterLink>
+              </Button>
+          </div>
+          <div class="flex gap-12">
+            <img class="object-conatin hidden md:block" src="/imageines/simpsons/bart.png" width="200px" />
 
-</h1>
-<!-- 
-        <div class="extra-nav"> 
-         <RouterLink to="/">
-        <House class="icon-home"/>
-        </RouterLink>  
-       </div> 
+            <img class="object-conatin hidden md:block mt-20" src="/imageines/simpsons/homer.png" width="195px" />
 
+            <img class="object-conatin mt-12 md:mt-0" src="/imageines/simpsons/moe.png" width="220px" />
 
-  <header class="Titulo">
-        <div id="titulus-Simpsons" class="titulus-img"> 
-        <h1> Simpsons</h1>
-        <p> Multiplicate por 0</p>
-        </div>
-       </header>   -->
+          </div>
 
+    
+  </div>
 
 </template>
 
-
-
-
-
-
 <style scoped>
-        .icon-home{
-    width: 3rem;
-    height: 3rem;
-    color: rgb(213, 91, 112);
-    margin: 20px;
-}
-
-.icon-home:hover{
-    color: white;
-    background-color: rgb(205, 87, 87);
-}
-
-.extra-nav {
-  background-color: white;
-  opacity: 0.7;
-  box-shadow: rgba(0, 0, 0, 0.7);
-  position: fixed;
-  top: 0;
-  width: 11rem;
-  border-radius: 0 0 1rem 0;
-  z-index: 1;
-}
-
-@media (min-width: 640px){
-  .extra-nav {
-    width: 100%;
-    border-radius: 0;
-    opacity: 1;
-    left: 0;
-  }
-}
 
 </style>
