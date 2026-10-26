@@ -4,11 +4,20 @@
 </script>
 
 <template>
-    <div>
-        <h1>Layout para Simpsons</h1>
+    <div class="grid grid-rows-[auto_1fr_auto] min-h-screen">
 
-        <RouterView/>
+        <header>
         
+        </header>
+
+        <main>
+            <RouterView/>
+        </main>
+
+        <footer>
+        
+        </footer>
+
     </div>
 </template>
 
