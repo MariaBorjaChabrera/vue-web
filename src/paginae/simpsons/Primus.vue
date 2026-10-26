@@ -19,9 +19,12 @@ import Button from '@/components/ui/button/Button.vue';
             <Button variant="terriarius" size="elongatis">
                   <RouterLink to="/">Exit</RouterLink>
             </Button>
+            
               <Button variant="terriarius" size="elongatis">
-                  <RouterLink to="">Enter</RouterLink>
+                  <RouterLink to="/simpsons/about">Enter</RouterLink>
               </Button>
+
+              
           </div>
           <div class="flex gap-12">
             <img class="object-conatin hidden md:block" src="/imageines/simpsons/bart.png" width="200px" />
