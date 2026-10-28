@@ -10,8 +10,6 @@ export const buttonVariants = cva(
       variant: {
         default:
           "bg-primary text-primary-foreground hover:bg-primary/90",
-        domus:
-          "bg-domus text-white hover:bg-domus/90 focus-visible:ring-domus/20 dark:focus-visible:ring-domus/40 dark:bg-domus/60",
         destructive:
           "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
         outline:
@@ -21,11 +19,9 @@ export const buttonVariants = cva(
         ghost:
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline",
-        terriarius: "bg-white text-base border border-black hover:bg-simpsons-red focus:bg-simpsons-red rounded-none",
       },
       size: {
         "default": "h-9 px-4 py-2 has-[>svg]:px-3",
-       "domus": "text-white bg-transparent hover:opacity-80 active:opacity-60 transition-opacity",
         "xs": "h-6 gap-1 rounded-md px-2 text-xs has-[>svg]:px-1.5 [&_svg:not([class*='size-'])]:size-3",
         "sm": "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
         "lg": "h-10 rounded-md px-6 has-[>svg]:px-4",
@@ -33,7 +29,6 @@ export const buttonVariants = cva(
         "icon-xs": "size-6 rounded-md [&_svg:not([class*='size-'])]:size-3",
         "icon-sm": "size-8",
         "icon-lg": "size-10",
-        "elongatis": "h-7.5 py-0.5 px-5",
       },
     },
     defaultVariants: {
