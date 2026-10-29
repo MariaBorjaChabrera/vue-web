@@ -22,7 +22,8 @@ import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
 import { ref } from 'vue'
 import type { DateValue } from 'reka-ui';
-import { Loader2 } from 'lucide-vue-next';
+import { Loader2, MapPin, Mail, Phone, MessageCircle, X } from '@lucide/vue';
+import { Icon } from '@iconify/vue';
 
 const dies= ref<DateValue>()
 const nomen = ref<string> ("")
@@ -66,6 +67,7 @@ const mittereSubmit = async () =>{
   await new Promise((resolve) => setTimeout(resolve, 1000))
   estLoanding.value = false
 
+  
 console.log('Formulario enviado:',{
  dies: dies.value,
  nomen: nomen.value,
@@ -73,6 +75,9 @@ console.log('Formulario enviado:',{
  missio: misssio.value,
 })
 
+  nomen.value = ""
+  cognomen.value = ""
+  misssio.value = ""
 
 
 </script>
@@ -230,7 +235,7 @@ console.log('Formulario enviado:',{
             </Popover>
 
             <Button type="submit"
-            class="w-full bg-brand-purple hover: bg-brand-purple-dark"
+            class="w-full bg-brand-purple"
             :disabled="estLoanding"
         
             >
@@ -255,17 +260,17 @@ console.log('Formulario enviado:',{
               
           <div class="space-y-2">
             <p class="flex items-center gap-2 justify-center md:justify-start">
-
+              <Phone class="w-6 h-6" />
               +1 (555) 123-4567
 
             </p>
             <p class="flex items-center gap-2 justify-center md:justify-start">
-
+              <Mail class="w-6 h-6"/>
               batman@wayneenterprises.com
 
             </p>
             <p class="flex items-center gap-2 justify-center md:justify-start">
-
+              <MapPin class="w-6 h-6"/>
               Wayne Manor, Gotham City
 
             </p>
@@ -277,10 +282,10 @@ console.log('Formulario enviado:',{
           <h3 class="text-xl font-bold text-white">Síguenos</h3>
           <div class="flex gap-8 justify-center">
           
-            Icono de X -
-            Icono de Instagram -
-            Icono de Linkedin - 
-            Icono de MessageCircle
+            <X class="w-10 h-10 hover:text-white"/> 
+            <span class="w-10 h-10 hover:text-white">Instagram</span>
+            <span class="w-10 h-10 hover:text-white">LinkedIn</span>
+            <MessageCircle class="w-10 h-10 hover:text-white"/>
                 
           </div>
       </div>
