@@ -22,8 +22,13 @@ import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
 import { ref } from 'vue'
 import type { DateValue } from 'reka-ui';
+import { Loader2 } from 'lucide-vue-next';
 
 const dies= ref<DateValue>()
+const nomen = ref<string> ("")
+const cognomen = ref<string> ("")
+const misssio = ref<string> ("")
+const estLoanding = ref<boolean>(false)  
 
 const photos = ["justice", "arkham", "superman", "varios", "villana", "villano", "grupo", "robin", "anne", "joker", "resplandor", "cat", "gafas", "league", "fondoVerde"];
 
@@ -55,6 +60,19 @@ const menuItems = [
     },
   },
 ]
+
+const mittereSubmit = async () =>{
+  estLoanding.value = true
+  await new Promise((resolve) => setTimeout(resolve, 1000))
+  estLoanding.value = false
+
+console.log('Formulario enviado:',{
+ dies: dies.value,
+ nomen: nomen.value,
+ cognomen: cognomen.value,
+ missio: misssio.value,
+})
+
 
 
 </script>
@@ -152,22 +170,26 @@ const menuItems = [
 
               <!-- Formulario -->
         <div class="w-full max-w-md mx-auto lg:max-w-none lg:w-1/2 ">
-          <form  class="space-y-6 bg-white p-8 rounded-lg shadow-lg aspect-square">
+
+          <form 
+          class="space-y-6 bg-white p-8 rounded-lg shadow-lg aspect-square"
+          @submit.prevent="mittereSubmit"
+          >
             <div class="space-y-2">   
                <Label for="nomen">Nombre</Label>
-               <Input id="nomen" required/>
+               <Input id="nomen" required v-model="nomen"/>
 
             </div>
                   
             <div class="space-y-2">
             <Label for="cognomen">Apellidos</Label>
-            <Input id="cognomen" required/> 
+            <Input id="cognomen" required v-model="cognomen"/> 
 
             </div>
 
-            <div class="space-y-2">
+            <div class="space-y-2 ">
 
-          <Select required>
+          <Select required >
             <SelectTrigger>
               <SelectValue placeholder="Selecciona una mision" />
             </SelectTrigger>
@@ -207,7 +229,16 @@ const menuItems = [
               </PopoverContent>
             </Popover>
 
-            Poner un botón para enviar la solicitud
+            <Button type="submit"
+            class="w-full bg-brand-purple hover: bg-brand-purple-dark"
+            :disabled="estLoanding"
+        
+            >
+            <Loader2 v-if="estLoanding" class="mrc-2 h-4 w-4 animate-spin"/>
+            <span v-if="estLoanding">Enviando...</span>
+
+            <span v-else>Enviar Solicitud</span>
+            </Button>
                 
           </form>
         </div>
