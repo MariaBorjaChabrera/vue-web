@@ -24,6 +24,7 @@ import { ref } from 'vue'
 import type { DateValue } from 'reka-ui';
 import { Loader2, MapPin, Mail, Phone, MessageCircle, X } from '@lucide/vue';
 import { Icon } from '@iconify/vue';
+import { toast } from 'vue-sonner';
 
 const dies= ref<DateValue>()
 const nomen = ref<string> ("")
@@ -64,6 +65,8 @@ const menuItems = [
 
 const mittereSubmit = async () =>{
   estLoanding.value = true
+
+
   await new Promise((resolve) => setTimeout(resolve, 1000))
   estLoanding.value = false
 
@@ -78,6 +81,7 @@ console.log('Formulario enviado:',{
   nomen.value = ""
   cognomen.value = ""
   misssio.value = ""
+}
 
 
 </script>
@@ -107,7 +111,7 @@ console.log('Formulario enviado:',{
 
   <div class="vehiculis-titulus">
         <h1>Vehículos de Batman</h1>
-      </div>
+  </div>
 
     <div id="imagines" class="vehiculis-arca">
       <div class="item unus">
@@ -283,8 +287,8 @@ console.log('Formulario enviado:',{
           <div class="flex gap-8 justify-center">
           
             <X class="w-10 h-10 hover:text-white"/> 
-            <span class="w-10 h-10 hover:text-white">Instagram</span>
-            <span class="w-10 h-10 hover:text-white">LinkedIn</span>
+            <Icon icon="w-10 h-10 hover:text-white">Instagram</Icon>
+            <Icon icon="w-10 h-10 hover:text-white">LinkedIn</Icon>
             <MessageCircle class="w-10 h-10 hover:text-white"/>
                 
           </div>
