@@ -1,7 +1,10 @@
 <script setup lang="ts">
-import { Card,CardContent,} from '@/components/ui/card'
-import { computed, ref } from 'vue'
-import { characters, type Character } from './data'
+import { Card,CardContent,} from '@/components/ui/card';
+import { computed, ref } from 'vue';
+import { characters} from './data';
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
 
 
 
@@ -44,7 +47,9 @@ const paginaNumeri: number[] = [...Array(totalPaginae)].map((_, i) => i + 1)
                 v-for="character in listaSimspsons"
                 :key="character.id"
                 >
-                <CardContent class="flex flex-col items-center gap-1 w-full px-0">
+                <CardContent
+                @click="router.push(`/simpsons/gallery/${character.id}`)"
+                 class="flex flex-col items-center gap-1 w-full px-0">
                     <img 
                     :src="`/imageines/simpsons/${character.imago}`"
                     class="w-48 h-42 object-cover object-top mt-2 bg-simpsons-yellow border border-black rounded-t-md "
@@ -71,7 +76,6 @@ const paginaNumeri: number[] = [...Array(totalPaginae)].map((_, i) => i + 1)
             <button
                 v-for="pagina in paginaNumeri"
                 @click="ireAdPaginam(pagina)"
-                :key="pagina"
                 :class="[
                      'w-10 h-10 rounded-md font-medium transition-colors',
                     nuncPagina=== pagina 
