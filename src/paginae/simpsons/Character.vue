@@ -55,48 +55,51 @@ const selectedLabel = computed(() => {
 </script>
 
 <template>
-  <Popover v-model:open="open">
-    <PopoverTrigger as-child>
-      <Button
-        variant="outline"
-        role="combobox"
-        :aria-expanded="open"
-        class="w-[200px] justify-between"
-      >
-        {{ selectedLabel }}
-        <ChevronsUpDownIcon class="ml-2 h-4 w-4 shrink-0 opacity-50" />
-      </Button>
-    </PopoverTrigger>
-    <PopoverContent class="w-[200px] p-0">
-      <Command>
-        <CommandInput placeholder="Search framework..." />
-        <CommandList>
-          <CommandEmpty>No framework found.</CommandEmpty>
-          <CommandGroup>
-            <CommandItem
-              v-for="simpson in simpsons"
-              :key="simpson.value"
-              :value="simpson.value"
-              @select="selectCharacter(simpson.value)"
+  <div v-if="character" class="w-full max-w-page md:auto my-8 px-5 nd:px-20">
+    <div class="mb-8">
+
+        <label class="block text-slg font-semibold mb-2 text-gray-800">Busca un personaje:</label>
+        <Popover v-model:open="open">
+            <PopoverTrigger as-child>
+            <Button
+                variant="outline"
+                role="combobox"
+                :aria-expanded="open"
+                class="w-[200px] justify-between bg-simpsons-red hover:bg-simpsons-yellow text-white border-2 border-black font-semibold shadow-md"
             >
-              <CheckIcon
-                :class="cn(
-                  'mr-2 h-4 w-4',
-                  value === simpson.value ? 'opacity-100' : 'opacity-0',
-                )"
-              />
-              {{ simpson.label }}
-            </CommandItem>
-          </CommandGroup>
-        </CommandList>
-      </Command>
-    </PopoverContent>
-  </Popover>
+                {{ selectedLabel }}
+                <ChevronsUpDownIcon class="ml-2 h-4 w-4 shrink-0 opacity-50" />
+            </Button>
+            </PopoverTrigger>
+            <PopoverContent class="w-[200px] p-0 border-2 border-black bg-white">
+            <Command>
+                <CommandInput placeholder="Buscar..." class="border-2 border-gray-200"/>
+                <CommandList>
+                <CommandEmpty>No se encontró ningún personaje.</CommandEmpty>
+                <CommandGroup>
+                    <CommandItem
+                    v-for="simpson in simpsons"
+                    :key="simpson.value"
+                    :value="simpson.value"
+                    @select="selectCharacter(simpson.value)"
+                    class="data-[highlighted]:bg-black data-[highlighted]:text-white cursor-pointer"
+                    >
+                    <CheckIcon
+                        :class="cn(
+                        'mr-2 h-4 w-4',
+                        value === simpson.value ? 'opacity-100' : 'opacity-0',
+                        )"
+                    />
+                    {{ simpson.label }}
+                    </CommandItem>
+                </CommandGroup>
+                </CommandList>
+            </Command>
+            </PopoverContent>
+        </Popover>
+    </div>
   
-     <div 
-     class="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-8"
-     v-if="character"
-     >
+     <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-8">
         <div>
             <h1 class="titulus-quote"> 
                 {{character.nomen}}
@@ -116,6 +119,7 @@ const selectedLabel = computed(() => {
         <figure class="figure-quote">
             <img :src="`/imageines/simpsons/${character.imago}`" alt="" />
         </figure>
+     </div>
      </div>
     
    
