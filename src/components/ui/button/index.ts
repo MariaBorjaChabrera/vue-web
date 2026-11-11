@@ -21,6 +21,8 @@ export const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         domus:
           "bg-domus text-white hover:bg-domus/90 focus-visible:ring-domus/20 dark:focus-visible:ring-domus/40 dark:bg-domus/60",
+        terriarius:
+          "border-2 border-black bg-simpsons-yellow text-black hover:bg-simpsons-red hover:text-white focus-visible:ring-simpsons-red/50",
       },
       size: {
         "default": "h-9 px-4 py-2 has-[>svg]:px-3",

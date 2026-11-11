@@ -1,6 +1,15 @@
 <script setup lang="ts">
 import LogoSimpsons from '@/components/LogoSimpsons.vue';
 import Button from '@/components/ui/button/Button.vue';
+import { useFavoritosStore } from '@/stores/useFavoritos';
+import { Heart } from '@lucide/vue';
+import { storeToRefs } from 'pinia';
+
+const favoritosStore = useFavoritosStore();
+
+const { totalFavoritos } = storeToRefs(favoritosStore);
+
+
 
 </script>
 
@@ -16,14 +25,18 @@ import Button from '@/components/ui/button/Button.vue';
         <strong>This is an unofficial app (even though it looks so cool!)</strong>
       </div>
           <div className="mt-8 flex gap-5">
-            <Button variant="terriarius" size="elongatis">
+            <Button variant="terriarius" size="lg">
                   <RouterLink to="/">Exit</RouterLink>
             </Button>
             
-              <Button variant="terriarius" size="elongatis">
+              <Button variant="terriarius" size="lg">
                   <RouterLink to="/simpsons/about">Enter</RouterLink>
               </Button>
 
+              <div class="flex items-center gap-2 text-blue-600">
+                <Heart class="w-6 h-6 fill-red-500" /> 
+                <span>{{ favoritosStore.totalFavoritos }}</span>
+              </div>
               
           </div>
           <div class="flex gap-12">

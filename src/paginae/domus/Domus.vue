@@ -10,30 +10,31 @@ import {
 } from '@/components/ui/dialog'
 
 import { Input } from '@/components/ui/input'
+import { useFavoritosStore } from '@/stores/useFavoritos';
+import { storeToRefs } from 'pinia';
 import { ref} from 'vue';
 import { useRouter } from 'vue-router';
 
 const dialogApertaEst = ref<boolean>(false)
 const quaestio = ref<string>("")
-  const textusItinerans = ref<string>("")
+const textusItinerans = ref<string>("")
 
 const router = useRouter()
 
 const cumKeyPressumEnter = (eventus: KeyboardEvent) => {
   if (eventus.key !== 'Enter') return
 
-  textusItinerans.value = quaestio.value.trim()
-  if (!textusItinerans.value) return
-
-  dialogApertaEst.value = false
-  router.push({
-    name: 'indecision',
-    query: { quaestio: textusItinerans.value }
-  })
+  if (textusItinerans.value.trim().length > 0 && textusItinerans.value.trim().endsWith('?')) {
+    dialogApertaEst.value = false
+    router.push({
+      path: '/indecision',
+      state: { quaestio: textusItinerans.value.trim() }
+    })
+  }
 }
 
-
-
+const favoritosStore = useFavoritosStore()
+const { totalFavoritos } = storeToRefs(favoritosStore)
 
 </script>
 
@@ -54,7 +55,7 @@ const cumKeyPressumEnter = (eventus: KeyboardEvent) => {
    Aprendiendo a crear aplicaciones web
    </p>
 
-      <div class="text-md bg-domus-cyan w-fit rounded-2xl px-2 py-2 gap-between gap-8">
+      <div class="text-md bg-domus-cyan w-fit rounded-2xl px-2 py-2 gap-between gap-8 hover:bg-purple-300">
         <div class="scale-z-10 ">
         
          <!-- <Button variant="domus" class="mr-2">      
@@ -101,12 +102,23 @@ const cumKeyPressumEnter = (eventus: KeyboardEvent) => {
            </RouterLink>     
         </Button>
 
-         <Button variant="domus"> 
+         <Button variant="domus" class="mr-2"> 
          <a href="https://www.youtube.com/watch?v=wAMZ6KpMGQI"
          target="_blank"
          >
          Repositories
          </a>
+        </Button>
+
+         <Button variant="default" class="relativemr-2 bg-simpsons-red md:py-5 md:px-6 md:text-lg hover:bg-simpsons-red"> 
+         <RouterLink to="" class="flex items-center gap-2">
+         <Heart class="w-5 h-7 fill-current"/>
+          Favoritos
+          <span class="absolute -top-3 -right-2 w-6.5 h-6.5  bg-amber-400 text-black text-base font-bold rounded-full ">
+          {{  totalFavoritos }}
+          </span>
+         </RouterLink>
+        
         </Button>
         </div>
   </div>

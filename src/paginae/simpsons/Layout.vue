@@ -29,7 +29,7 @@ import Button from '@/components/ui/button/Button.vue';
                     About
                 </RouterLink>
 
-                <Button variant="terriarius" size="elongatis">
+                <Button variant="terriarius" size="lg">
                     <RouterLink to="/simpsons">Exit</RouterLink>
                 </Button>
          </div>
