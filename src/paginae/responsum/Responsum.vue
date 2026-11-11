@@ -1,50 +1,82 @@
-<template> 
+
+<script setup lang="ts">
+import { getYesNo, type YesNoTipus } from '@/actions/getYesNo.actio';
+import { Loader2 } from '@lucide/vue';
+import { computed, onMounted, ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router'
+
+const route = useRoute()
+const router = useRouter()
+const quaestio = computed(() => {
+        const query = route.query.quaestio
+        return typeof query === 'string' ? query : 'No hay pregunta'
+})
+const yesNo = ref <YesNoTipus>({ 
+        answer: '',
+         image: '' 
+        })
+
+const estLoading = ref<boolean>(true)
+
+onMounted(async () => {
+    try {
+        const response = await getYesNo()
+        yesNo.value = response
+        estLoading.value = false
+    } catch (error) {
+        console.error(error);
    
-        <!-- <h1> Indecision Page</h1> -->
-<RouterLink to="/" class="text-2xl ml-4">Home</RouterLink>
-    
-<div class="w-200 h-200 border-2 m-4 grid grid-cols-4 grid-rows-3 gap-4">
-        <div class="bg-sky-500 col-span-3 p-4 flex flex-row-reverse items-end gap-4">
-                <div class="bg-sky-100 w-18 h-full"></div>
-                <div class="bg-white w-18 h-[60%] order-first"></div>
-                <div class="bg-sky-100 w-18 h-[30%]"></div>
-                <div class="bg-sky-800 w-18 h-[100%] flex-1"></div>
-        </div>
+        estLoading.value = false;
+    }
+})
+        
 
-        <div class="bg-pink-500 row-span-3 p-4 flex flex-col justify-between items-center">
-                <div class="bg-pink-200 w-[80%] h-16"></div>
-                <div class="bg-pink-200 w-full h-[60%] p-3 grid grid-cols-2 grid-rows-3 gap-3">
-                        <div class="bg-pink-500 row-span-2"></div>
-                        <div class="bg-white"></div>
-                        <div class="bg-white"></div>
-                        <div class="bg-pink-500 col-span-2"></div>
+</script>
+
+<template>
+        <div class="text-center"> 
+
+        <div v-if="estLoading">
+                <img class="h-screen w-screen absolute top-0 left-0 object-cover" src="/imageines/github.jpg" alt="..." />
+                <div class="absolute w-screen h-screen top-0 left-0 bg-black opacity-40"></div>
+
+                <div class="relative mt-45">
+                        <p class="text-4xl text-white font-medium mt-8">{{ quaestio }}</p> 
+                        
+                        <div class="flex items-center justify-center mt-60">
+                                <Loader2 class="w-18 h-18 text-white animate-spin" />
+                        </div>
                 </div>
-                <div class="bg-pink-200 w-[40%] h-16 self-end"></div>
         </div>
 
-        <div class="bg-lime-500 row-span-2 p-4 flex flex-col-reverse flex-wrap gap-4 ">
-                <div class="bg-lime-200 w-12 h-[20%]"></div>
-                <div class="bg-lime-200 w-12 h-[20%]"></div>
-                <div class="bg-white w-12 h-[20%] order-first"></div>
-                <div class="bg-lime-200 w-12 h-[20%]"></div>
-                <div class="bg-white w-12 h-[20%] order-first"></div>
-                <div class="bg-lime-200 w-12 h-[20%]"></div>
-        </div>
+        <div v-else class="relative flex min-h-screen flex-col items-center justify-center overflow-hidden">
+                <img
+                        v-if="yesNo.image"
+                        :src="yesNo.image"
+                        :alt="`GIF de respuesta: ${yesNo.answer}`"
+                        class="absolute inset-0 z-0 h-full w-full object-cover"
+                />
+                <div class="absolute inset-0 z-0 bg-black/40"></div>
 
-        <div class="bg-amber-400 col-span-2 p-4 grid grid-cols-3 grid-rows-2 gap-3">
-                <div class="bg-amber-100 col-span-2"></div>
-                <div class="bg-white row-span-2"></div>
-                <div class="bg-amber-100"></div>
-                <div class="bg-amber-100"></div>
+                <div class="relative z-10 flex flex-col items-center px-6 text-white">
+                        <p class="text-4xl font-medium">{{ quaestio }}</p>
+                        <p class="mt-24 text-6xl font-bold">
+                                {{ yesNo.answer === 'yes' ? 'Siií' : 'No!' }}
+                        </p>
+                </div>
+
+                <button
+                        @click="router.push('/')"
+                        class="fixed right-5 top-5 z-20 flex h-12 w-12 items-center justify-center rounded-lg border border-gray-300 bg-gray-700 transition-colors hover:bg-gray-600"
+                >
+                        <span class="text-xl text-gray-300">➔</span>
+                </button>
         </div>
-        <div class="bg-violet-400 flex justify-center items-center">
-                <div class="bg-violet-200 w-22 h-22 rounded-full"></div>
-        </div>
-        <div class="bg-teal-500 p-3 flex gap-3 flex-wrap content-center">
-                <div class="bg-teal-200 w-10 h-10"></div>
-                <div class="bg-teal-200 w-10 h-10"></div>
-                <div class="bg-teal-200 w-10 h-10"></div>
-        </div>
+	
 </div>
-
 </template>
+
+
+<style scoped>
+
+</style>
